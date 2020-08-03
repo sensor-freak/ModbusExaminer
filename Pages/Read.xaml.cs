@@ -33,6 +33,7 @@ namespace ModbusExaminer.Pages
         private ModbusExaminerLogger logger = ModbusExaminerLogger.Instance;
 
         public int Count { get; set; } = 1;
+        public ushort Size { get; set; } = 1;
         public string IPAddress { get; set; } = "localhost";
         public int Port { get; set; } = 502;
         public short DeviceId { get; set; } = 1;
@@ -73,7 +74,7 @@ namespace ModbusExaminer.Pages
                 cHelper.EstablishConnection(3000);
             }
 
-            cHelper.UpdateRegisters(this.Register, this.Count,devicetype);
+            cHelper.UpdateRegisters(this.Register, this.Count, this.Size, devicetype);
         }
 
         private void RegisterNumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -230,5 +231,14 @@ namespace ModbusExaminer.Pages
                 Count = 1;
             }
         }
+
+        private void size_reg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+          if (size_reg.Text == "0")
+          {
+            size_reg.Text = "1";
+            Size = 1;
+          }
     }
+  }
 }

@@ -65,12 +65,14 @@
         <TextBox x:Name="IP" HorizontalAlignment="Left" Text="{Binding Path=DataContext.IPAddress}" Height="23" Margin="31,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" RenderTransformOrigin="-0.063,0.626" TextChanged="textBox_TextChanged"/>
         <Label x:Name="label_Copy1" Content="Port" HorizontalAlignment="Left" Margin="49.6,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <TextBox x:Name="port"  PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Port}" Height="23" Margin="83.6,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" RenderTransformOrigin="1.179,0.429" Grid.Column="1"/>
-        <Label x:Name="label_Copy2" Content="Start Address" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="start_address" PreviewTextInput="RegisterNumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Register}" Height="23" Margin="93,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" TextChanged="start_address_TextChanged"/>
+        <Label x:Name="label_Copy2" Content="Start Address" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="start_address" PreviewTextInput="RegisterNumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Register}" Height="23" Margin="93,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" TextChanged="start_address_TextChanged"/>
         <Label x:Name="label_Copy3" Content="ID" HorizontalAlignment="Left" Margin="223,15,0,0" VerticalAlignment="Top" Width="18" Grid.Column="1"/>
         <TextBox x:Name="slave_id" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.DeviceId}" Height="23" Margin="246,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="1"/>
-        <Label x:Name="label_Copy4" Content="Count&#xD;&#xA;" HorizontalAlignment="Left" Margin="49.6,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="count_reg" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Count}" Height="23" Margin="98.6,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Grid.Column="1" TextChanged="end_address_TextChanged"/>
+        <Label x:Name="label_Copy4" Content="Count&#xD;&#xA;" HorizontalAlignment="Left" Margin="50,46,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="count_reg" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Count}" Height="23" Margin="99,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Grid.Column="1" TextChanged="end_address_TextChanged"/>
+        <Label x:Name="label_Copy6" Content="Size&#xD;&#xA;" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="size_reg" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Text="{Binding Path=DataContext.Size}" Height="23" Margin="99,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Grid.Column="1" TextChanged="size_reg_TextChanged"/>
         <Button x:Name="readbutton" Content="Add" HorizontalAlignment="Left" Margin="50,120,0,0" VerticalAlignment="Top" Width="89" Click="button_Click" Grid.Column="1"/>
         <DataGrid x:Name="ConnectionsGrid" SelectionMode="Single" GridLinesVisibility="Horizontal" SelectionUnit="FullRow" HorizontalAlignment="Stretch" Margin="9,164,37,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="289" ItemsSource="{Binding ConnectionInfo}" AutoGenerateColumns="False"  IsReadOnly="True" MouseDoubleClick="ConnectionGrid_Click" SelectionChanged="ConnectionsGrid_SelectionChanged" CanUserResizeRows="False">
             <DataGrid.Columns>
@@ -104,8 +106,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label_Copy5" Content="Type&#xA;" HorizontalAlignment="Left" Margin="219,64,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <ComboBox x:Name="devicetypeCmbox" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="0" Margin="249,64,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="comboBox_SelectionChanged">
+        <Label x:Name="label_Copy5" Content="Type&#xA;" HorizontalAlignment="Left" Margin="219,46,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <ComboBox x:Name="devicetypeCmbox" Grid.Column="1" HorizontalAlignment="Left" SelectedIndex="0" Margin="249,46,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="comboBox_SelectionChanged">
             <ComboBoxItem Content="Holding Registers" HorizontalAlignment="Left" Width="160"/>
             <ComboBoxItem Content="Input Registers" HorizontalAlignment="Left" Width="160"/>
             <ComboBoxItem Content="Input Coils" HorizontalAlignment="Left" Width="160"/>

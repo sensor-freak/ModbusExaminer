@@ -30,6 +30,7 @@ namespace ModbusExaminer.helpers
         }
         private string readValue;
         public string RegisterType { get; set; }
+        public ushort RegisterSize { get; set; }
         public int SampleRate { get; set; } = 3000;
         // ignored
         [JsonIgnore]
@@ -57,16 +58,16 @@ namespace ModbusExaminer.helpers
                         switch (RegisterType)
                         {
                             case "Holding Registers":
-                                Value = retrieveValue(connectionHelper.modbusMaster.ReadHoldingRegisters((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), 1));
+                                Value = retrieveValue(connectionHelper.modbusMaster.ReadHoldingRegisters((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), RegisterSize));
                                 break;
                             case "Input Registers":
-                                Value = retrieveValue(connectionHelper.modbusMaster.ReadInputRegisters((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), 1));
+                                Value = retrieveValue(connectionHelper.modbusMaster.ReadInputRegisters((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), RegisterSize));
                                 break;
                             case "Input Coils":
-                                Value = retrieveValue(connectionHelper.modbusMaster.ReadInputs((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), 1));
+                                Value = retrieveValue(connectionHelper.modbusMaster.ReadInputs((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), RegisterSize));
                                 break;
                             case "Output Coils":
-                                Value = retrieveValue(connectionHelper.modbusMaster.ReadCoils((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), 1));
+                                Value = retrieveValue(connectionHelper.modbusMaster.ReadCoils((byte)connectionHelper.Id, getRegisterAddress((ushort)Register), RegisterSize));
                                 break;
                         }
                     }catch(Exception ex)

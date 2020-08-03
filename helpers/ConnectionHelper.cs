@@ -57,9 +57,9 @@ namespace ModbusExaminer.helpers
             }
         }
 
-        public void UpdateRegisters(int startAddress, int count, string rt)
+        public void UpdateRegisters(int startAddress, int count, ushort size, string rt)
         {
-            for(int i = startAddress; i < startAddress + count; i++)
+            for(int i = startAddress; i < startAddress + count * size; i += size)
             {
                 if (!Registers.Any(reg => reg.Register == i && string.Equals(rt,reg.RegisterType,StringComparison.CurrentCultureIgnoreCase)))
                 {
@@ -67,6 +67,7 @@ namespace ModbusExaminer.helpers
                     {
                         Register = i,
                         RegisterType = rt,
+                        RegisterSize = size,
                         connectionHelper = this
                     };
                     Registers.Add(r);
@@ -75,7 +76,6 @@ namespace ModbusExaminer.helpers
                     {                   
                         r.InitializePeriodicReads();
                     });
-                    
                 }
             }
         }
