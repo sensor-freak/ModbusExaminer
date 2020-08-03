@@ -80,11 +80,28 @@ namespace ModbusExaminer.helpers
             });
         }
 
-        private string retrieveValue<T>(T[] list)
-        {
+        private string retrieveValue<T>(T[] list) where T: IConvertible
+    {
             if (list.Length > 0)
             {
-                return list[0].ToString();
+                switch( list.Length)
+                {
+                  case 1:
+                      return list[0].ToString();
+                  case 2:
+                      var value2 = (Convert.ToInt32(list[0]) << 16) + Convert.ToUInt32(list[1]);
+                      return value2.ToString();
+                  case 4:
+                      var value4 = (Convert.ToInt64(list[0]) << 48) + Convert.ToInt64(Convert.ToUInt64(list[1]) << 32)
+                                 + Convert.ToInt64(Convert.ToUInt64(list[2]) << 16) + Convert.ToInt64(Convert.ToUInt64(list[3]));
+                      return value4.ToString();
+                  default:
+                        byte[] buf = new byte[list.Length * System.Runtime.InteropServices.Marshal.SizeOf(typeof(T))];
+                        Buffer.BlockCopy(list, 0, buf, 0, list.Length);
+                        bool bAsciiString = true;
+                        foreach( var c in buf) { bAsciiString &= c >= 0 && c <= 127; }
+                        return bAsciiString ? Encoding.Default. GetString(buf) : BitConverter.ToString(buf);
+                }
             }
             return "";
         }
