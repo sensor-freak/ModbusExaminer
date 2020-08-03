@@ -6,7 +6,7 @@
                   xmlns:mui="http://firstfloorsoftware.com/ModernUI"
                   mc:Ignorable="d"
                   Title="Modbus Examiner"
-                  Style="{StaticResource BlankWindow}" ResizeMode="NoResize" Height="501" Width="610">
+                  Style="{StaticResource BlankWindow}" ResizeMode="CanResizeWithGrip" Height="501" Width="610">
     <mui:ModernWindow.Resources>
         <Style x:Key="RoundButtonTemplate" TargetType="Button">
             <Setter Property="Background" Value="Red"/>
@@ -32,38 +32,40 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-    </mui:ModernWindow.Resources>   
-    <ScrollViewer>
-        <StackPanel>
-            <TextBlock x:Name="ResultsText" Style="{StaticResource Heading2}" Height="35" />
-            <DataGrid x:Name="ResultsDataGrid" Height="408" Width="588" BorderThickness="3" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionChanged="dataGrid_SelectionChanged" ItemsSource="{Binding RegisterData}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Register" IsReadOnly="True" Binding="{Binding Register}" MinWidth="50" CanUserResize="False" />
-                    <DataGridTextColumn Header="Alias" Binding="{Binding Alias}" MinWidth="50" CanUserResize="False" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Value" IsReadOnly="True" Binding="{Binding Path=Value,UpdateSourceTrigger=PropertyChanged}" MinWidth="50" CanUserResize="False"/>
-                    <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding RegisterType}" MinWidth="50" CanUserResize="False"/>
-                    <DataGridTextColumn Header="Sample rate"  Binding="{Binding SampleRate}" MinWidth="50" CanUserResize="False"/>
-                    <DataGridTemplateColumn CanUserResize="False">  
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button  Width="80"
+    </mui:ModernWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Name="ResultsText" Style="{StaticResource Heading2}" Height="35" />
+        <DataGrid Grid.Row="1" x:Name="ResultsDataGrid" BorderThickness="3" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" SelectionChanged="dataGrid_SelectionChanged" ItemsSource="{Binding RegisterData}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Register" IsReadOnly="True" Binding="{Binding Register}" MinWidth="50" CanUserResize="False" />
+                <DataGridTextColumn Header="Alias" Binding="{Binding Alias}" MinWidth="50" CanUserResize="False" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Value" IsReadOnly="True" Binding="{Binding Path=Value,UpdateSourceTrigger=PropertyChanged}" MinWidth="50" CanUserResize="False"/>
+                <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding RegisterType}" MinWidth="50" CanUserResize="False"/>
+                <DataGridTextColumn Header="Sample rate"  Binding="{Binding SampleRate}" MinWidth="50" CanUserResize="False"/>
+                <DataGridTemplateColumn CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Width="80"
                                     Height="20" 
                                     Grid.Row="0"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
                                     BorderBrush="#FFF" Style="{StaticResource RoundButtonTemplate}" Click="Button_Click">Remove</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-                <DataGrid.RowHeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
                                       AncestorType={x:Type DataGridRow}}, 
                                       Path=Item.Header}"/>
-                    </DataTemplate>
-                </DataGrid.RowHeaderTemplate>
-            </DataGrid>
-        </StackPanel>
-    </ScrollViewer>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+    </Grid>
 </mui:ModernWindow>
